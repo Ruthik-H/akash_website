@@ -1,0 +1,58 @@
+export const siteConfig = {
+  brand: "Aaku Films",
+  creator: "AKASH GOWDA",
+  role: "Filmmaker · Cinematographer · Editor · Colorist",
+  subtitle: "Filmmaker. Editor. Visual Storyteller.",
+  tagline: "Turning raw moments into cinematic memories.",
+  heroPortrait: "/images/akash-portrait.jpg",
+  instagram: {
+    handle: "@aakufilmss_",
+    url: "https://www.instagram.com/aakufilmss_?rpxt=MW9zcjVtbmpoMTZtcQ",
+  },
+  contact: {
+    headline: "LET'S CREATE SOMETHING CINEMATIC.",
+    subtext: "Available for commercial shoots, cinematography, creative direction, editing & color grading worldwide.",
+    email: "akashgowdafilms@gmail.com",
+  },
+  works: [
+    {
+      id: "work-gucci",
+      title: "Gucci Editorial Fashion Film",
+      category: "FILMMAKING",
+      aspect: "portrait",
+      description: "High-contrast editorial lighting, dynamic camera movement, and urban haute-couture energy.",
+      image: "/images/work-4.jpg",
+    },
+    {
+      id: "work-panigale",
+      title: "Ducati Corse — Velocity in Red",
+      category: "CINEMATOGRAPHY",
+      aspect: "portrait",
+      description: "Superbike cinematic commercial. Aggressive framing, precision tracking, and rich color tone.",
+      image: "/images/work-5.jpg",
+    },
+    {
+      id: "work-kudremukh",
+      title: "Kudremukh Mist Expedition",
+      category: "COLOR GRADING",
+      aspect: "portrait",
+      description: "Atmospheric mountain grade, moody overcast skies, and deep cinematic emerald tones.",
+      image: "/images/work-11.jpg",
+    },
+  ],
+  // All 12 real reels cropped from @aakufilmss_ profile
+  reels: [
+    { id: 1, title: "Crew & Brotherhood", category: "LIFESTYLE", image: "/images/work-1.jpg" },
+    { id: 2, title: "What Makes You Happy?", category: "STORYTELLING", image: "/images/work-2.jpg" },
+    { id: 3, title: "Vintage Café Racer", category: "AUTOMOTIVE", image: "/images/work-3.jpg" },
+    { id: 4, title: "Gucci Visual Narrative", category: "FASHION", image: "/images/work-4.jpg" },
+    { id: 5, title: "Ducati Superbike", category: "COMMERCIAL", image: "/images/work-5.jpg" },
+    { id: 6, title: "Late Night Drive", category: "MONOCHROME", image: "/images/work-6.jpg" },
+    { id: 7, title: "The Break", category: "TRAVEL REEL", image: "/images/work-7.jpg" },
+    { id: 8, title: "Valli Rainforest Story", category: "CINEMATOGRAPHY", image: "/images/work-8.jpg" },
+    { id: 9, title: "Mullayanagiri Hills", category: "NATURE", image: "/images/work-9.jpg" },
+    { id: 10, title: "The Crimson Path", category: "MOOD & TONE", image: "/images/work-10.jpg" },
+    { id: 11, title: "Kudremukh Ghat Road", category: "EXPEDITION", image: "/images/work-11.jpg" },
+    { id: 12, title: "Heritage Estate Stills", category: "PHOTOGRAPHY", image: "/images/work-12.jpg" },
+  ],
+};
