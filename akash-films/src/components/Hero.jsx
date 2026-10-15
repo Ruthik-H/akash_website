@@ -37,11 +37,11 @@ export default function Hero() {
         <div className="absolute bottom-12 right-12 w-6 h-6 border-b-2 border-r-2 border-[#E5601A]" />
       </div>
 
-      {/* Quick Skip Intro Button */}
+      {/* Quick Skip Intro Button (Touch-optimized) */}
       {introStep === 0 && (
         <button
           onClick={handleSkipIntro}
-          className="absolute top-24 right-6 md:right-12 z-30 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-[11px] font-mono tracking-wider uppercase text-[#A1A19E] hover:text-[#F3F2EE] transition-all backdrop-blur-md cursor-pointer"
+          className="absolute top-20 right-4 sm:top-24 sm:right-6 md:right-12 z-30 inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/60 hover:bg-white/[0.1] border border-white/10 text-[11px] font-mono tracking-wider uppercase text-[#A1A19E] hover:text-[#F3F2EE] transition-all backdrop-blur-md cursor-pointer"
         >
           <span>Skip Intro</span>
           <FastForward size={12} className="text-[#E5601A]" />
@@ -49,7 +49,7 @@ export default function Hero() {
       )}
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full relative z-10">
         <AnimatePresence mode="wait">
           
           {/* ========================================================
@@ -62,7 +62,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.4 }}
-              className="flex flex-col items-center justify-center min-h-[60vh] text-center pointer-events-none px-4"
+              className="flex flex-col items-center justify-center min-h-[60vh] text-center pointer-events-none px-2"
             >
               {/* Studio Clapperboard Label */}
               <motion.div
@@ -76,15 +76,20 @@ export default function Hero() {
                 </span>
               </motion.div>
 
-              {/* Studio Title Teaser */}
-              <motion.h2
+              {/* Studio Title Teaser in distinctive cinematic typography format */}
+              <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="font-display text-4xl sm:text-6xl font-black uppercase tracking-wider text-[#F3F2EE] drop-shadow-2xl"
+                className="my-2 flex items-baseline justify-center gap-2 sm:gap-4 drop-shadow-[0_10px_35px_rgba(0,0,0,0.9)]"
               >
-                AKASH FILMS
-              </motion.h2>
+                <span className="font-editorial italic font-normal text-4xl sm:text-7xl md:text-8xl text-[#F3F2EE] tracking-normal drop-shadow-[0_0_40px_rgba(255,255,255,0.25)]">
+                  Aaku
+                </span>
+                <span className="font-cinzel font-black uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[#E5601A] text-xl sm:text-4xl md:text-5xl">
+                  Films
+                </span>
+              </motion.div>
 
               <motion.p
                 initial={{ opacity: 0 }}
@@ -99,7 +104,7 @@ export default function Hero() {
 
             /* ========================================================
                PHASE 3 & 4: DRAMATIC HERO REVEAL (100% MOBILE COMPATIBLE)
-             ======================================================== */
+              ======================================================== */
             <motion.div
               key="hero-reveal"
               initial={{ opacity: 0, y: 25 }}
@@ -113,12 +118,12 @@ export default function Hero() {
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-white/12 bg-white/[0.03] backdrop-blur-md w-fit mb-4 shadow-inner">
                   <span className="w-2 h-2 rounded-full bg-[#E5601A] animate-ping" />
                   <span className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-[#D8D6D0]">
-                    AKASH FILMS &bull; DIRECTOR &bull; COLORIST
+                    AAKU FILMS &bull; DIRECTOR &bull; COLORIST
                   </span>
                 </div>
 
                 {/* Name: AKASH GOWDA with responsive mobile text sizes */}
-                <h1 className="font-display text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black uppercase tracking-tight text-[#F3F2EE] leading-[0.94] mb-3 drop-shadow-2xl">
+                <h1 className="font-display text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black uppercase tracking-tight text-[#F3F2EE] leading-[0.96] sm:leading-[0.94] mb-3 drop-shadow-2xl">
                   AKASH <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F3F2EE] via-[#E8E6DF] to-[#E5601A]">
                     GOWDA
@@ -126,8 +131,9 @@ export default function Hero() {
                 </h1>
 
                 {/* Sub-Brand label */}
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#E5601A] mb-3">
-                  AKASH FILMS
+                <p className="text-xs sm:text-sm font-semibold mb-3 flex items-baseline gap-1.5">
+                  <span className="font-editorial italic font-normal text-base sm:text-lg text-[#F3F2EE]">Aaku</span>
+                  <span className="font-cinzel text-xs sm:text-xs font-bold uppercase tracking-[0.25em] text-[#E5601A]">Films</span>
                 </p>
 
                 {/* Exact Tagline requested */}
@@ -135,12 +141,12 @@ export default function Hero() {
                   "Filmmaker. Visual Storyteller. Creator of Cinematic Experiences."
                 </p>
 
-                {/* Action CTAs */}
-                <div className="flex flex-wrap items-center gap-3.5 sm:gap-5 mb-8">
+                {/* Action CTAs (Full width & easy tap on mobile) */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8">
                   <a
                     href="#work"
                     onClick={handleScrollToWork}
-                    className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#E5601A] to-[#F26E29] hover:from-[#F26E29] hover:to-[#E5601A] text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all shadow-xl shadow-[#E5601A]/25 hover:shadow-[#E5601A]/40 hover:scale-[1.02] cursor-pointer"
+                    className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#E5601A] to-[#F26E29] hover:from-[#F26E29] hover:to-[#E5601A] text-white font-semibold text-xs md:text-sm tracking-widest uppercase transition-all shadow-xl shadow-[#E5601A]/25 hover:shadow-[#E5601A]/40 hover:scale-[1.02] cursor-pointer text-center"
                   >
                     <span>EXPLORE THE WORK</span>
                     <ArrowDown size={14} className="group-hover:translate-y-1 transition-transform" />
@@ -150,35 +156,35 @@ export default function Hero() {
                     href={siteConfig.instagram.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/15 hover:border-[#E5601A]/50 bg-white/[0.03] hover:bg-white/[0.08] text-[#F3F2EE] font-medium text-xs md:text-sm tracking-wider uppercase transition-all backdrop-blur-sm"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/15 hover:border-[#E5601A]/50 bg-white/[0.03] hover:bg-white/[0.08] text-[#F3F2EE] font-medium text-xs md:text-sm tracking-wider uppercase transition-all backdrop-blur-sm text-center"
                   >
                     <InstagramIcon size={15} className="text-[#E5601A]" />
                     <span>{siteConfig.instagram.handle}</span>
                   </a>
                 </div>
 
-                {/* Technical Specs Strip */}
-                <div className="pt-4 border-t border-white/[0.08] flex items-center gap-6 md:gap-10 text-[#82827D] text-[11px] sm:text-xs uppercase tracking-widest">
+                {/* Technical Specs Strip (Grid on mobile, flex on desktop) */}
+                <div className="pt-4 border-t border-white/[0.08] grid grid-cols-2 sm:flex sm:items-center gap-4 sm:gap-8 md:gap-10 text-[#82827D] text-[11px] sm:text-xs uppercase tracking-widest">
                   <div>
                     <span className="text-[#F3F2EE] font-bold block text-xs sm:text-sm tracking-wider">Cinematography</span>
-                    <span>Visual Storyteller</span>
+                    <span className="text-[10px] sm:text-xs">Visual Storyteller</span>
                   </div>
-                  <div className="w-px h-7 bg-white/[0.1]" />
+                  <div className="hidden sm:block w-px h-7 bg-white/[0.1]" />
                   <div>
                     <span className="text-[#F3F2EE] font-bold block text-xs sm:text-sm tracking-wider">Color Grade</span>
-                    <span>Tone &amp; Lighting</span>
+                    <span className="text-[10px] sm:text-xs">Tone &amp; Lighting</span>
                   </div>
                   <div className="w-px h-7 bg-white/[0.1] hidden sm:block" />
-                  <div className="hidden sm:block">
+                  <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 pt-2 sm:pt-0 border-white/[0.06]">
                     <span className="text-[#E5601A] font-bold block text-xs sm:text-sm tracking-wider">12+ Reels</span>
-                    <span>Live Showcase</span>
+                    <span className="text-[10px] sm:text-xs">Live Showcase</span>
                   </div>
                 </div>
               </div>
 
-              {/* Right Column: Akash's Portrait — Sized for mobile and desktop */}
-              <div className="lg:col-span-5 flex justify-center lg:justify-end">
-                <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[360px] aspect-[9/14] rounded-3xl p-1 bg-gradient-to-b from-white/20 via-white/5 to-[#E5601A]/35 shadow-2xl shadow-black group">
+              {/* Right Column: Akash's Portrait — Clean mobile proportion */}
+              <div className="lg:col-span-5 flex justify-center lg:justify-end mt-4 lg:mt-0">
+                <div className="relative w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] aspect-[9/14] rounded-3xl p-1 bg-gradient-to-b from-white/20 via-white/5 to-[#E5601A]/35 shadow-2xl shadow-black group">
                   <div className="relative w-full h-full rounded-[22px] overflow-hidden bg-[#101010]">
                     <img
                       src={siteConfig.heroPortrait}

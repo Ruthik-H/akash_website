@@ -250,8 +250,8 @@ export default function CameraCanvas3D({ onIntroComplete }) {
     flareRing.position.set(0, 0, 3.8);
     cinemaRig.add(flareRing);
 
-    // Scaling
-    const baseScale = isMobile ? 0.62 : 0.95;
+    // Scaling optimized for mobile screens
+    const baseScale = isMobile ? 0.54 : 0.95;
     cinemaRig.scale.set(baseScale, baseScale, baseScale);
     scene.add(cinemaRig);
 
@@ -307,14 +307,14 @@ export default function CameraCanvas3D({ onIntroComplete }) {
         const t = smoothEaseOut(rawProgress);
 
         cinemaRig.position.x = THREE.MathUtils.lerp(-3.2, isMobile ? 0 : 0.4, t);
-        cinemaRig.position.y = THREE.MathUtils.lerp(-0.8, 0, t);
+        cinemaRig.position.y = THREE.MathUtils.lerp(-0.8, isMobile ? 0.35 : 0, t);
         cinemaRig.position.z = THREE.MathUtils.lerp(-4.0, -0.3, t);
 
         cinemaRig.rotation.y = THREE.MathUtils.lerp(-1.3, 0.32, t);
         cinemaRig.rotation.x = THREE.MathUtils.lerp(0.25, 0.04, t);
         cinemaRig.rotation.z = THREE.MathUtils.lerp(-0.15, 0, t);
 
-        camera.position.z = THREE.MathUtils.lerp(8.5, 7.2, t);
+        camera.position.z = THREE.MathUtils.lerp(isMobile ? 9.5 : 8.5, isMobile ? 8.2 : 7.2, t);
 
         // Light Beam Projection
         if (rawProgress > 0.45 && rawProgress < 0.95) {
@@ -335,9 +335,9 @@ export default function CameraCanvas3D({ onIntroComplete }) {
           if (onIntroComplete) onIntroComplete();
         }
 
-        // Lightweight idle breathing on hero
+        // Lightweight idle breathing on hero (adjusted for mobile)
         const idleTime = (now - (startTimestamp + INTRO_DURATION_MS)) * 0.001;
-        cinemaRig.position.y = Math.sin(idleTime * 1.3) * 0.06;
+        cinemaRig.position.y = (isMobile ? 0.35 : 0) + Math.sin(idleTime * 1.3) * 0.05;
         cinemaRig.rotation.y = 0.32 + Math.sin(idleTime * 0.6) * 0.035;
         cinemaRig.rotation.x = 0.04 + Math.cos(idleTime * 0.9) * 0.015;
       }
@@ -376,7 +376,7 @@ export default function CameraCanvas3D({ onIntroComplete }) {
         renderer.setSize(w, h);
 
         const mobile = w < 768;
-        const scale = mobile ? 0.62 : 0.95;
+        const scale = mobile ? 0.54 : 0.95;
         cinemaRig.scale.set(scale, scale, scale);
       }, 100);
     };

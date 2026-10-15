@@ -55,13 +55,13 @@ const servicesList = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-[#060606] relative overflow-hidden">
+    <section id="services" className="py-16 sm:py-24 md:py-32 bg-[#060606] relative overflow-hidden">
       {/* Decorative top border */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-20 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 md:mb-20 gap-4 sm:gap-6">
           <div>
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E5601A]" />
@@ -69,7 +69,7 @@ export default function Services() {
                 EXPERTISE &amp; SERVICES
               </span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#F3F2EE]">
+            <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#F3F2EE]">
               WHAT I BRING TO THE FRAME
             </h2>
           </div>
@@ -79,7 +79,7 @@ export default function Services() {
         </div>
 
         {/* 8 Services Editorial Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
           {servicesList.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -89,7 +89,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: index * 0.06 }}
-                className="group relative p-6 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.08] hover:border-[#E5601A]/60 transition-all duration-300 flex flex-col justify-between"
+                className="group relative p-5 sm:p-6 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.08] hover:border-[#E5601A]/60 transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Top Number & Icon */}
                 <div>

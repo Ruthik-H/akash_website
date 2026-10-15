@@ -18,18 +18,25 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-[#080808]/85 backdrop-blur-md py-4 border-b border-white/[0.06] shadow-2xl'
-          : 'bg-transparent py-6 md:py-8'
+          ? 'bg-[#080808]/90 backdrop-blur-md py-3 sm:py-4 border-b border-white/[0.06] shadow-2xl'
+          : 'bg-transparent py-4 sm:py-6 md:py-8'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
         {/* Brand Wordmark */}
         <a
           href="#"
-          className="group flex items-center gap-3 tracking-widest text-sm md:text-base font-bold text-[#F3F2EE] hover:text-[#E5601A] transition-colors"
+          className="group flex items-center gap-2.5 text-sm md:text-base font-bold text-[#F3F2EE] transition-colors"
         >
           <span className="w-2 h-2 rounded-full bg-[#E5601A] transition-transform group-hover:scale-125" />
-          <span className="font-display tracking-[0.2em]">{siteConfig.brand}</span>
+          <span className="flex items-baseline gap-1.5">
+            <span className="font-editorial italic font-normal text-lg sm:text-xl tracking-normal text-[#F3F2EE] group-hover:text-[#E5601A] transition-colors">
+              Aaku
+            </span>
+            <span className="font-cinzel text-[11px] sm:text-xs tracking-[0.22em] text-[#E5601A] font-bold uppercase">
+              Films
+            </span>
+          </span>
         </a>
 
         {/* Navigation Items */}

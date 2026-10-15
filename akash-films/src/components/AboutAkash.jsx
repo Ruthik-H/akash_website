@@ -5,11 +5,11 @@ import { siteConfig } from '../config';
 
 export default function AboutAkash() {
   return (
-    <section id="about" className="py-20 md:py-28 bg-[#090909] relative overflow-hidden border-t border-white/[0.06]">
+    <section id="about" className="py-16 sm:py-20 md:py-28 bg-[#090909] relative overflow-hidden border-t border-white/[0.06]">
       {/* Subtle atmospheric ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-96 bg-[#E5601A]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-80 bg-[#E5601A]/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,12 +26,12 @@ export default function AboutAkash() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-[#F3F2EE] mb-8">
+          <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#F3F2EE] mb-6 sm:mb-8">
             BEHIND THE LENS
           </h2>
 
           {/* Editorial Introduction */}
-          <div className="space-y-5 text-base sm:text-lg md:text-xl text-[#B0AEA9] font-light leading-relaxed">
+          <div className="space-y-4 sm:space-y-5 text-sm sm:text-base md:text-lg text-[#B0AEA9] font-light leading-relaxed">
             <p>
               I'm <span className="text-[#F3F2EE] font-semibold">Akash Gowda</span>, a passionate videographer, filmmaker, video editor, photographer, and colorist. I love turning ordinary moments into powerful visual stories through thoughtful cinematography, creative editing, and cinematic color grading.
             </p>
@@ -41,7 +41,7 @@ export default function AboutAkash() {
           </div>
 
           {/* Clean Pillars Card Bar without photo */}
-          <div className="mt-10 pt-8 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-6">
             <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#E5601A]/40 transition-colors">
               <div className="flex items-center gap-2.5 mb-2">
                 <div className="w-7 h-7 rounded-lg bg-[#E5601A]/20 flex items-center justify-center text-[#E5601A]">
