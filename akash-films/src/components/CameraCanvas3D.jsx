@@ -1,6 +1,133 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
+let cachedLensCanvas = null;
+
+function getProceduralLensCanvas() {
+  if (cachedLensCanvas) return cachedLensCanvas;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return canvas;
+
+  const cx = 256;
+  const cy = 256;
+  const r = 248;
+
+  // 1. Dark outer lens housing & rim
+  ctx.fillStyle = '#0a0c0e';
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 2. Beveled metal ring
+  const metalGrad = ctx.createRadialGradient(cx, cy, r - 35, cx, cy, r);
+  metalGrad.addColorStop(0, '#1c1f24');
+  metalGrad.addColorStop(0.5, '#40464f');
+  metalGrad.addColorStop(0.7, '#14161a');
+  metalGrad.addColorStop(1, '#0c0e11');
+  ctx.fillStyle = metalGrad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r - 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 3. Threaded Ring Texture
+  ctx.strokeStyle = '#2b313a';
+  ctx.lineWidth = 1.5;
+  for (let rad = r - 32; rad > r - 55; rad -= 4) {
+    ctx.beginPath();
+    ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // 4. Matte Black Barrel
+  ctx.fillStyle = '#080a0c';
+  ctx.beginPath();
+  ctx.arc(cx, cy, r - 58, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 5. Cinema Lens Ring Lettering
+  ctx.save();
+  ctx.translate(cx, cy);
+  const text = 'AAKU CINEMA PRIME  ·  50mm T1.5  ·  FULL FRAME  ·  Ø95mm  ·  ';
+  ctx.font = 'bold 12px monospace';
+  ctx.fillStyle = '#c5cdd8';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  const radius = r - 74;
+  const step = (Math.PI * 2) / text.length;
+  for (let i = 0; i < text.length; i++) {
+    ctx.save();
+    ctx.rotate(i * step);
+    ctx.fillText(text[i], 0, -radius);
+    ctx.restore();
+  }
+  ctx.restore();
+
+  // 6. Deep Optical Glass Elements & Multi-Coating reflections
+  const glassGrad = ctx.createRadialGradient(cx - 30, cy - 30, 10, cx, cy, r - 95);
+  glassGrad.addColorStop(0, '#0a2324');
+  glassGrad.addColorStop(0.35, '#09141f');
+  glassGrad.addColorStop(0.7, '#070b12');
+  glassGrad.addColorStop(1, '#020406');
+  ctx.fillStyle = glassGrad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r - 92, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 7. AR Multicoating Concentric Sheens (Emerald, Magenta, Amber, Cyan)
+  const coatings = [
+    { rad: r - 105, color: 'rgba(16, 185, 129, 0.28)', width: 8 },
+    { rad: r - 125, color: 'rgba(217, 70, 239, 0.24)', width: 6 },
+    { rad: r - 145, color: 'rgba(245, 158, 11, 0.22)', width: 5 },
+    { rad: r - 165, color: 'rgba(6, 182, 212, 0.25)', width: 7 },
+  ];
+  coatings.forEach((c) => {
+    ctx.strokeStyle = c.color;
+    ctx.lineWidth = c.width;
+    ctx.beginPath();
+    ctx.arc(cx, cy, c.rad, 0, Math.PI * 2);
+    ctx.stroke();
+  });
+
+  // 8. 9 Aperture Blades in Central Pupil
+  const pupilRadius = 75;
+  const numBlades = 9;
+  ctx.fillStyle = '#050709';
+  ctx.beginPath();
+  ctx.arc(cx, cy, pupilRadius, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+  ctx.lineWidth = 1.2;
+  for (let b = 0; b < numBlades; b++) {
+    const angle = (b * Math.PI * 2) / numBlades;
+    const x1 = cx + Math.cos(angle) * (pupilRadius + 15);
+    const y1 = cy + Math.sin(angle) * (pupilRadius + 15);
+    const x2 = cx + Math.cos(angle + 0.9) * (pupilRadius * 0.45);
+    const y2 = cy + Math.sin(angle + 0.9) * (pupilRadius * 0.45);
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+  }
+
+  // 9. Central Lens Curvature Highlight
+  const highlightGrad = ctx.createRadialGradient(cx - 45, cy - 45, 2, cx - 35, cy - 35, 60);
+  highlightGrad.addColorStop(0, 'rgba(255, 255, 255, 0.55)');
+  highlightGrad.addColorStop(0.3, 'rgba(16, 185, 129, 0.25)');
+  highlightGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = highlightGrad;
+  ctx.beginPath();
+  ctx.arc(cx - 35, cy - 35, 60, 0, Math.PI * 2);
+  ctx.fill();
+
+  cachedLensCanvas = canvas;
+  return canvas;
+}
+
 export default function CameraCanvas3D({ onIntroComplete }) {
   const containerRef = useRef(null);
 
@@ -155,17 +282,26 @@ export default function CameraCanvas3D({ onIntroComplete }) {
     glassMesh.position.set(0, 0, 3.25);
     cinemaRig.add(glassMesh);
 
-    // REAL DSLR CINEMA LENS FRONT ELEMENT (High-res 50mm T1.5 photo mounted in front of camera)
-    const textureLoader = new THREE.TextureLoader();
-    const dslrTex = textureLoader.load('/images/dslr-lens.jpg');
-    dslrTex.colorSpace = THREE.SRGBColorSpace;
-    const lensFaceGeo = new THREE.CircleGeometry(0.98, 24);
+    // CINEMA LENS FRONT ELEMENT (Instant 0ms procedural texture + seamless high-res photo upgrade)
+    const proceduralCanvas = getProceduralLensCanvas();
+    const initialLensTex = new THREE.CanvasTexture(proceduralCanvas);
+    initialLensTex.colorSpace = THREE.SRGBColorSpace;
+    const lensFaceGeo = new THREE.CircleGeometry(0.98, 28);
     const lensFaceMat = new THREE.MeshBasicMaterial({
-      map: dslrTex,
+      map: initialLensTex,
     });
     const lensFaceMesh = new THREE.Mesh(lensFaceGeo, lensFaceMat);
     lensFaceMesh.position.set(0, 0, 3.84);
     cinemaRig.add(lensFaceMesh);
+
+    // Asynchronously upgrade to high-res photo texture without frame drops
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load('/images/dslr-lens.jpg', (loadedTex) => {
+      loadedTex.colorSpace = THREE.SRGBColorSpace;
+      lensFaceMat.map = loadedTex;
+      lensFaceMat.needsUpdate = true;
+      initialLensTex.dispose();
+    });
 
 
     // Matte Box

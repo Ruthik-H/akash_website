@@ -77,7 +77,7 @@ export default function SelectedWork() {
         {/* Compact Reel Grid — 2 columns on mobile with optimized gap */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-5">
           <AnimatePresence mode="popLayout">
-            {filteredReels.map((reel) => (
+            {filteredReels.map((reel, idx) => (
               <motion.div
                 key={reel.id}
                 initial={{ opacity: 0, scale: 0.96 }}
@@ -90,14 +90,17 @@ export default function SelectedWork() {
                   href={siteConfig.instagram.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-[#121212] border border-white/[0.08] hover:border-[#E5601A]/60 shadow-lg shadow-black/60 transition-all duration-300 group-hover:-translate-y-1 transform-gpu"
+                  className="block relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-[#121417] border border-white/[0.08] hover:border-[#E5601A]/60 shadow-lg shadow-black/60 transition-all duration-300 group-hover:-translate-y-1 transform-gpu"
                 >
                   {/* Compact High-Density Reel Image */}
                   <img
                     src={reel.image}
                     alt={reel.title}
+                    width="244"
+                    height="331"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter contrast-[1.04]"
-                    loading="lazy"
+                    loading={idx < 4 ? 'eager' : 'lazy'}
+                    fetchPriority={idx < 4 ? 'high' : 'low'}
                     decoding="async"
                   />
 

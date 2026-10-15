@@ -189,8 +189,11 @@ export default function Hero() {
                     <img
                       src={siteConfig.heroPortrait}
                       alt="Akash Gowda"
+                      width="640"
+                      height="994"
                       className="w-full h-full object-cover object-top filter contrast-[1.05] brightness-[0.98] transition-transform duration-700 group-hover:scale-105"
                       decoding="async"
+                      loading="eager"
                       fetchPriority="high"
                     />
 
